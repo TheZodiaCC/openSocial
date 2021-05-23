@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>openSocial</title>
+    </head>
+    <body>
+        <p>
+            Login
+        </p>
+        <form method="POST" action="/login/process">
+            <input type="text" name="name">
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+        <p>
+            {{ message }}
+        </p>
+    </body>
+</html>
