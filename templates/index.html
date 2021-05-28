@@ -16,5 +16,16 @@
             </a>
         </p>
         {{ message }}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    {% for post_item in posts[post] %}
+                        <p>
+                            {{ posts[post][post_item] }}
+                        </p>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

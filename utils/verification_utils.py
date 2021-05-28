@@ -5,9 +5,10 @@ def check(value, max_length, min_length, forbidden_chars):
     if len(value) > max_length or len(value) < min_length:
         return False
 
-    for char in value:
-        if char in forbidden_chars:
-            return False
+    if forbidden_chars is not None:
+        for char in value:
+            if char in forbidden_chars:
+                return False
 
     return True
 

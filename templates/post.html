@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>openSocial</title>
+    </head>
+    <body>
+        <p>
+            {{ username }}
+        </p>
+        <form action="/post/commit" method="POST">
+            <input type="text" name="post-title" placeholder="Post title...">
+            <textarea placeholder="Post text..." name="post-text"></textarea>
+            <input type="submit" value="Post">
+        </form>
+        {{ message }}
+    </body>
+</html>

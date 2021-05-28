@@ -21,12 +21,12 @@ def login():
 
 @auth_.route("/register/process", methods=["POST"])
 def register_process():
-    name = request.form.get("name")
-    password = request.form.get("password")
-
-    if name == "" or password == "":
+    if not request.form["name"] or not request.form["password"]:
         return routes_utils.render_register("Passowrd or Username can't be empty", False)
     else:
+        name = request.form["name"]
+        password = request.form["password"]
+
         if User.query.filter_by(username=name).first():
             return routes_utils.render_register("Username already taken", False)
         else:
@@ -38,7 +38,7 @@ def register_process():
 
                 return routes_utils.render_home("Succesfully created an account")
             else:
-                message = "Invalid username or password see or guidline about creating accounts"
+                message = "Invalid username or password see our guidline about creating accounts"
                 return routes_utils.render_register(message, True)
 
 
