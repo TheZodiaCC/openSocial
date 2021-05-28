@@ -26,9 +26,10 @@ def get_posts():
         author = models.User.query.filter_by(id=post.user_id).first()
 
         posts_struct_item["author"] = author.username
-        posts_struct_item["date_posted"] = str(post.date_posted)
+        posts_struct_item["date_posted"] = post.date_posted
         posts_struct_item["title"] = post.title
         posts_struct_item["content"] = post.content
+        posts_struct_item["comments_count"] = len(post.comments)
 
         posts_struct[post.id] = posts_struct_item.copy()
 

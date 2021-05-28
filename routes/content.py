@@ -10,7 +10,7 @@ content_ = Blueprint("content", __name__, template_folder='template', static_fol
 
 @content_.route("/")
 def home():
-    return routes_utils.render_home("")
+    return routes_utils.render_home(None, None)
 
 
 @content_.route("/profile")
@@ -22,7 +22,7 @@ def profile():
 @content_.route("/post")
 @flask_login.login_required
 def post():
-    return routes_utils.render_post("")
+    return routes_utils.render_post(None)
 
 
 @content_.route("/post/commit", methods=["POST"])

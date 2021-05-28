@@ -28,13 +28,13 @@ def login():
 @auth_.route("/register/process", methods=["POST"])
 def register_process():
     if not request.form["name"] or not request.form["password"]:
-        return routes_utils.render_register("Passowrd or Username can't be empty", False)
+        return routes_utils.render_register("Password or Username can't be empty")
     else:
         name = request.form["name"]
         password = request.form["password"]
 
         if User.query.filter_by(username=name).first():
-            return routes_utils.render_register("Username already taken", False)
+            return routes_utils.render_register("Username already taken")
         else:
             if verification_utils.check_password(password) and verification_utils.check_username(name):
                 new_user = User(username=name, password=generate_password_hash(password, method="sha256"))
@@ -42,10 +42,10 @@ def register_process():
                 db.session.add(new_user)
                 db.session.commit()
 
-                return routes_utils.render_home("Succesfully created an account")
+                return routes_utils.render_home(None, "Succesfully created an account")
             else:
                 message = "Invalid username or password see our guidline about creating accounts"
-                return routes_utils.render_register(message, True)
+                return routes_utils.render_register(message)
 
 
 @auth_.route("/login/process", methods=["POST"])
@@ -61,10 +61,10 @@ def login_process():
     else:
         flask_login.login_user(user)
 
-        return redirect(url_for("content.profile"))
+        return redirect(url_for("content.home"))
 
 
-@auth_.route("/logout", methods=["POST"])
+@auth_.route("/logout", methods=["POST", "GET"])
 @flask_login.login_required
 def logout():
     flask_login.logout_user()

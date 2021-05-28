@@ -3,13 +3,47 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <title>openSocial</title>
     </head>
     <body>
-        Hi {{ name }}
-        <form method="POST" action="/logout">
-            <input type="submit" value="Logout">
-        </form>
+        <div class="container">
+            <div class="header">
+                <span class="openSocial-title">
+                    <a href="{{ url_for('content.home') }}">
+                        openSocial - Profile
+                    </a>
+                </span>
+                <span class="header-controls">
+                    <span class="username-header">
+                            {{ username }}
+                            <div class="dropdown-header-menu">
+                                <span class="dropdown-header-item">
+                                    <a href="{{ url_for('content.profile') }}">
+                                        Profile
+                                    </a>
+                                </span>
+                                <span class="dropdown-header-item">
+                                    <a href="{{ url_for('content.post') }}">
+                                        Post
+                                    </a>
+                                </span>
+                                <span class="dropdown-header-item">
+                                    <a href="{{ url_for('auth.logout') }}">
+                                        Logout
+                                    </a>
+                                </span>
+                            </div>
+                        </span>
+                    </span>
+                </span>
+            </div>
+            <div class="content">
+                Hello {{ username }}
+            </div>
+            <div class="footer">
+                openSocial ~ Built with Flask
+            </div>
+        </div>
     </body>
 </html>

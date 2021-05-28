@@ -3,25 +3,37 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <title>openSocial</title>
     </head>
     <body>
-        <p>
-            Register
-        </p>
-        <form method="POST" action="/register/process">
-            <input type="text" name="name">
-            <input type="password" name="password">
-            <input type="submit" value="Register">
-        </form>
-        <p>
-            {{ message }}
-        </p>
-        {% if invalid_password %}
-            <p>
-                Invalid password
-            </p>
-        {% endif %}
+        <div class="container">
+            <div class="header">
+                <span class="openSocial-title">
+                    <a href="{{ url_for('content.home') }}">
+                        openSocial - Register
+                    </a>
+                </span>
+            </div>
+            <div class="content">
+                <div class="auth-container">
+                    <div class="auth-form">
+                        <form method="POST" action="/register/process">
+                            <input type="text" name="name" placeholder="Username...">
+                            <input type="password" name="password" placeholder="Password...">
+                            <input type="submit" value="Register">
+                        </form>
+                        {% if error_message %}
+                            <div class="error_message-container">
+                                {{ error_message }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                openSocial ~ Built with Flask
+            </div>
+        </div>
     </body>
 </html>
