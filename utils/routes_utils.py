@@ -14,7 +14,9 @@ def render_register(message, invalid_password):
 def render_home(message):
     posts = social_utils.get_posts()
 
-    return render_template("index.html", message=message, posts=posts)
+    user_logged_in = current_user.is_authenticated
+
+    return render_template("index.html", message=message, posts=posts, user_logged_in=user_logged_in)
 
 
 def render_profile():

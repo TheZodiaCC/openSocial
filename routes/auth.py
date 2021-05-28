@@ -11,12 +11,18 @@ auth_ = Blueprint("auth", __name__, template_folder='template', static_folder='s
 
 @auth_.route("/register")
 def register():
-    return render_template("register.html")
+    if flask_login.current_user.is_authenticated:
+        return redirect(url_for("content.home"))
+    else:
+        return render_template("register.html")
 
 
 @auth_.route("/login")
 def login():
-    return render_template("login.html")
+    if flask_login.current_user.is_authenticated:
+        return redirect(url_for("content.home"))
+    else:
+        return render_template("login.html")
 
 
 @auth_.route("/register/process", methods=["POST"])
