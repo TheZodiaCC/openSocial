@@ -4,33 +4,44 @@ import datetime
 import re
 
 
-def create_post(title, text, user_id):
-    clean = re.compile('<.*?>')
+def clean_text(text):
+    clean_re = re.compile('<.*?>')
 
-    text = re.sub(clean, '', text)
-    title = re.sub(clean, '', title)
+    text = re.sub(clean_re, '', text)
 
-    post = models.Post(title=title, content=text, date_posted=datetime.datetime.now(), user_id=user_id)
+    return text
+
+
+def create_post(title, text, username):
+    text = clean_text(text)
+    title = clean_text(title)
+
+    post = models.Post(title=title, content=text, date_posted=datetime.datetime.now(), author_name=username)
 
     db.session.add(post)
     db.session.commit()
 
 
-def get_posts():
-    posts_struct = {}
-    posts_struct_item = {}
+def create_comment(text, username, post_id):
+    text = clean_text(text)
 
+    comment = models.Comment(content=text, date_posted=datetime.datetime.now(), author_name=username, post_id=post_id)
+
+    db.session.add(comment)
+    db.session.commit()
+
+
+def get_post(post_id):
+    post = models.Post.query.filter_by(id=post_id).first()
+
+    return post
+
+
+def get_posts():
     posts = models.Post.query.all()
 
-    for post in posts:
-        author = models.User.query.filter_by(id=post.user_id).first()
+    return list(reversed(posts))
 
-        posts_struct_item["author"] = author.username
-        posts_struct_item["date_posted"] = post.date_posted
-        posts_struct_item["title"] = post.title
-        posts_struct_item["content"] = post.content
-        posts_struct_item["comments_count"] = len(post.comments)
 
-        posts_struct[post.id] = posts_struct_item.copy()
-
-    return posts_struct
+def get_comments():
+    pass

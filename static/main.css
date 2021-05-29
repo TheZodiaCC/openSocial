@@ -104,7 +104,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -117,7 +117,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -140,6 +140,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 60%;
+    width: 60%;
     align-items: center;
     margin-bottom: 30px;
 }
@@ -193,4 +194,30 @@ body {
 .post-form-form input {
     width: 100%;
     padding: 0;
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    width: 60%;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.comment-container {
+    margin: 10px;
+    width: 100%;
+}
+
+.comment-content {
+    background-color: #d4d4d4;
+    padding: 5px;
+}
+
+.comment-footer {
+    background-color: #7db0ba;
+    color: white;
+    padding: 2px;
+    padding: 5px;
 }

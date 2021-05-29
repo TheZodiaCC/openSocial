@@ -62,25 +62,32 @@
             {% endif %}
             <div class="main-content">
                 <div class="posts-container">
+                    {% if posts|length == 0 %}
+                        <p>
+                            No posts to show
+                        </p>
+                    {% endif %}
                     {% for post in posts %}
                         <div class="post-container">
                             <div class="post-header">
                                 <h2>
-                                    {{ posts[post]['title'] }}
+                                    <a href="{{ url_for('content.post_content', post_id=post.id) }}">
+                                        {{ post.title }}
+                                    </a>
                                 </h2>
                             </div>
                             <div class="post-content">
-                                {{ posts[post]['content'] }}
+                                {{ post.content }}
                             </div>
                             <div class="post-footer">
                                 <p>
-                                    Posted by {{ posts[post]['author'] }}
+                                    Posted by {{ post.author_name }}
                                 </p>
                                 <p>
-                                    Posted at {{ posts[post]['date_posted'] }}
+                                    Posted at {{ post.date_posted }}
                                 </p>
                                 <p>
-                                    Comments {{ posts[post]['comments_count'] }}
+                                    Comments {{ post.comments|length }}
                                 </p>
                             </div>
                         </div>

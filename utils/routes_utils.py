@@ -11,6 +11,14 @@ def render_register(error_message):
     return render_template("register.html", error_message=error_message)
 
 
+def render_post_content(post_id, error_message):
+    post = social_utils.get_post(post_id)
+    username = current_user.username
+    comments = list(reversed(post.comments))
+
+    return render_template("post_content.html", post=post, username=username, error_message=error_message, comments=comments)
+
+
 def render_home(error_message, success_message):
     posts = social_utils.get_posts()
 
